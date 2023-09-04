@@ -6,6 +6,9 @@ const imagemPersonagem = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 const buttonsContexto = document.querySelectorAll('.app__card-button')
 const buttonComecarParar = document.querySelector('#start-pause')
+const btIniciarOuPausar = document.querySelector('#start-pause span')
+const iconIniciarOuPausar = document.querySelector('.app__card-primary-butto-icon')
+const tempoNaTela = document.querySelector('#timer')
 
 let tempoDecorridoEmSegundos = 5
 let intervaloId
@@ -73,16 +76,20 @@ function alterarContexto(contexto){
 
 const contagemRegressiva = () => {
     if(tempoDecorridoEmSegundos <= 0){
-        zerar()
-        somAcabouTempo.play()
+        // somAcabouTempo.play() 
         alert('Tempo finalizado')
+        zerar()
         return
     }
     tempoDecorridoEmSegundos -= 1
-    console.log('Temporizador = ' + tempoDecorridoEmSegundos)
+    mostrarTempo()
 }
 
 buttonComecarParar.addEventListener('click', iniciarOuPausar)
+
+function alteraIconePlayOrPause(imagem){
+    iconIniciarOuPausar.setAttribute('src', `/imagens/${imagem}.png`)
+}
 
 function iniciarOuPausar() {
     if(intervaloId){
@@ -90,13 +97,24 @@ function iniciarOuPausar() {
         somPausar.play()
         return
     }
-    intervaloId = setInterval(contagemRegressiva, 1000)
     somIniciar.play()
+    intervaloId = setInterval(contagemRegressiva, 1000)
+    btIniciarOuPausar.textContent = "Pausar"
+    alteraIconePlayOrPause('pause')
 }
 
 function zerar(){
     clearInterval(intervaloId)
+    btIniciarOuPausar.textContent = "Começar"
+    alteraIconePlayOrPause('play_arrow')
     intervaloId = null
 }
+
+function mostrarTempo(){
+    const tempo = tempoDecorridoEmSegundos
+    tempoNaTela.innerHTML = `${tempo}`
+}
+
+mostrarTempo()
 
 
