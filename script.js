@@ -10,7 +10,7 @@ const btIniciarOuPausar = document.querySelector('#start-pause span')
 const iconIniciarOuPausar = document.querySelector('.app__card-primary-butto-icon')
 const tempoNaTela = document.querySelector('#timer')
 
-let tempoDecorridoEmSegundos = 5
+let tempoDecorridoEmSegundos = 1500
 let intervaloId
 
 const musicaFocoInput = document.querySelector('#alternar-musica')
@@ -30,21 +30,25 @@ musicaFocoInput.addEventListener('change', () => {
 })
 
 buttonFoco.addEventListener('click', () => {
+    tempoDecorridoEmSegundos = 60*25
     alterarContexto('foco')
     buttonFoco.classList.add('active')
 })
 
 buttonDescansoCurto.addEventListener('click', () => {
+    tempoDecorridoEmSegundos = 60*5
     alterarContexto('descanso-curto')
     buttonDescansoCurto.classList.add('active')
 })
 
 buttonDescansoLongo.addEventListener('click', () => {
+    tempoDecorridoEmSegundos = 60*15
     alterarContexto('descanso-longo')
     buttonDescansoLongo.classList.add('active')
 })
 
 function alterarContexto(contexto){
+    mostrarTempo()
     buttonsContexto.forEach((target) => {
         target.classList.remove('active') // Após clicado no botão ele ira remover todas classes active dos botões, e ler a próxima linha, que adiciona no clicado.
     })
@@ -111,8 +115,9 @@ function zerar(){
 }
 
 function mostrarTempo(){
-    const tempo = tempoDecorridoEmSegundos
-    tempoNaTela.innerHTML = `${tempo}`
+    const tempo = new Date(tempoDecorridoEmSegundos * 1000)
+    const tempoFormatado = tempo.toLocaleTimeString('pt-br', {minute: '2-digit', second: '2-digit'})
+    tempoNaTela.innerHTML = `${tempoFormatado}`
 }
 
 mostrarTempo()
