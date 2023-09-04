@@ -4,9 +4,13 @@ const buttonDescansoCurto = document.querySelector('.app__card-button--curto')
 const buttonDescansoLongo = document.querySelector('.app__card-button--longo')
 const imagemPersonagem = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
+const buttonsContexto = document.querySelectorAll('.app__card-button')
 
 
 function alterarContexto(contexto){
+    buttonsContexto.forEach((target) => {
+        target.classList.remove('active') // Após clicado no botão ele ira remover todas classes active dos botões, e ler a próxima linha, que adiciona no clicado.
+    })
     html.setAttribute('data-contexto', contexto)
     imagemPersonagem.setAttribute('src', `/imagens/${contexto}.png`)
     switch (contexto) {
@@ -35,14 +39,17 @@ function alterarContexto(contexto){
 
 buttonFoco.addEventListener('click', () => {
     alterarContexto('foco')
+    buttonFoco.classList.add('active')
 })
 
 buttonDescansoCurto.addEventListener('click', () => {
     alterarContexto('descanso-curto')
+    buttonDescansoCurto.classList.add('active')
 })
 
 buttonDescansoLongo.addEventListener('click', () => {
     alterarContexto('descanso-longo')
+    buttonDescansoLongo.classList.add('active')
 })
 
 
