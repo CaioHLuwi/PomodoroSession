@@ -6,6 +6,20 @@ const imagemPersonagem = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 const buttonsContexto = document.querySelectorAll('.app__card-button')
 
+buttonFoco.addEventListener('click', () => {
+    alterarContexto('foco')
+    buttonFoco.classList.add('active')
+})
+
+buttonDescansoCurto.addEventListener('click', () => {
+    alterarContexto('descanso-curto')
+    buttonDescansoCurto.classList.add('active')
+})
+
+buttonDescansoLongo.addEventListener('click', () => {
+    alterarContexto('descanso-longo')
+    buttonDescansoLongo.classList.add('active')
+})
 
 function alterarContexto(contexto){
     buttonsContexto.forEach((target) => {
@@ -36,21 +50,6 @@ function alterarContexto(contexto){
             break;
     }
 }
-
-buttonFoco.addEventListener('click', () => {
-    alterarContexto('foco')
-    buttonFoco.classList.add('active')
-})
-
-buttonDescansoCurto.addEventListener('click', () => {
-    alterarContexto('descanso-curto')
-    buttonDescansoCurto.classList.add('active')
-})
-
-buttonDescansoLongo.addEventListener('click', () => {
-    alterarContexto('descanso-longo')
-    buttonDescansoLongo.classList.add('active')
-})
 
 
 
