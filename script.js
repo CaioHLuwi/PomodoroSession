@@ -6,6 +6,19 @@ const imagemPersonagem = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 const buttonsContexto = document.querySelectorAll('.app__card-button')
 
+const musicaFocoInput = document.querySelector('#alternar-musica')
+const musica = new Audio('/sons/luna-rise-part-one.mp3') 
+musica.loop = true
+
+musicaFocoInput.addEventListener('change', () => {
+    if(musica.paused) {
+        musica.play()
+        musica.volume = 0.3
+    } else {
+        musica.pause()
+    }
+})
+
 buttonFoco.addEventListener('click', () => {
     alterarContexto('foco')
     buttonFoco.classList.add('active')
