@@ -1,4 +1,3 @@
-/* Mudança de background */
 const html = document.querySelector('html')
 const buttonFoco = document.querySelector('.app__card-button--foco')
 const buttonDescansoCurto = document.querySelector('.app__card-button--curto')
@@ -6,20 +5,22 @@ const buttonDescansoLongo = document.querySelector('.app__card-button--longo')
 
 const imagemPersonagem = document.querySelector('.app__image')
 
+function alterarContexto(contexto){
+    html.setAttribute('data-contexto', contexto)
+    imagemPersonagem.setAttribute('src', `/imagens/${contexto}.png`)
+}
+
 buttonFoco.addEventListener('click', () => {
-    html.setAttribute('data-contexto', 'foco')
-    imagemPersonagem.setAttribute('src', '/imagens/foco.png')
+    alterarContexto('foco')
 })
 
 buttonDescansoCurto.addEventListener('click', () => {
-    html.setAttribute('data-contexto', 'descanso-curto')
-    imagemPersonagem.setAttribute('src', '/imagens/descanso-curto.png')
+    alterarContexto('descanso-curto')
 })
 
 buttonDescansoLongo.addEventListener('click', () => {
-    html.setAttribute('data-contexto', 'descanso-longo')
-    imagemPersonagem.setAttribute('src', '/imagens/descanso-longo.png')
+    alterarContexto('descanso-longo')
 })
-/* Mudança de background */
+
 
 
